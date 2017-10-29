@@ -1,10 +1,10 @@
 module Picturizer
   module Specifications
     module Configuration
-      def configure( &blk )
+      def configure
         return unless block_given?
 
-        config.instance_eval( &blk )
+        yield config
       end
     end
   end

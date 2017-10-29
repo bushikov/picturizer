@@ -1,10 +1,10 @@
 module Picturizer
   module Specifications
     module Canvas
-      def canvas( &blk )
+      def canvas
         return unless block_given?
 
-        canvas.instance_eval( &blk )
+        yield canvas
       end
     end
   end

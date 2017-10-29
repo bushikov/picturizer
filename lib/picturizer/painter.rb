@@ -11,6 +11,8 @@ module Picturizer
         container.push( canvas )
       end
 
+      container.ticks_per_second = spec.config.ticks_per_second
+      container.delay = spec.config.interval
       container
     end
 

@@ -1,46 +1,30 @@
 module Picturizer
   module Shapes
-    class Rectangle
-      attr_accessor :x,
-                    :y,
-                    :height,
-                    :width,
-                    :stroke_color,
-                    :stroke_linecap,
-                    :stroke_linejoin,
-                    :stroke_opacity,
-                    :stroke_width,
-                    :fill_opacity
+    class Rectangle < Base
+      register_parameters :width, :height
 
       def initialize
-        @stroke_color = "black"
-        @stroke_linecap = "butt"
-        @stroke_linejoin = "miter"
-        @stroke_opacity = 1
-        @stroke_width = 1
-        @fill_opacity = 0
-
-        @x = 0
-        @y = 0
         @height = 0
         @width = 0
       end
 
       def draw( canvas, time )
-        draw_object.rectangle( @x, @y, @x + @width, @y + @height ).draw( canvas )
+        draw_object( time ).rectangle( x( time ),
+                                       y( time ),
+                                       x( time ) + @width,
+                                       y( time ) + @height ).draw( canvas )
       end
 
-      def draw_object
-        return @draw_object if @draw_object
+      def draw_object( time )
+        obj = magick_draw_object
 
-        @draw_object = Magick::Draw.new
-        @draw_object.stroke( stroke_color )
-        @draw_object.stroke_linecap( stroke_linecap )
-        @draw_object.stroke_linejoin( stroke_linejoin )
-        @draw_object.stroke_opacity( stroke_opacity )
-        @draw_object.stroke_width( stroke_width )
-        @draw_object.fill_opacity( fill_opacity )
-        @draw_object
+        obj.stroke( stroke_color( time ) )
+        obj.stroke_linecap( stroke_linecap( time ) )
+        obj.stroke_linejoin( stroke_linejoin( time ) )
+        obj.stroke_width( stroke_width( time ) )
+        obj.fill( fill_color( time ) )
+        obj.stroke_opacity( stroke_opacity( time ) )
+        obj.fill_opacity( fill_opacity( time ) )
       end
     end
   end

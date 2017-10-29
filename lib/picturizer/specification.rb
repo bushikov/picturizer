@@ -16,12 +16,14 @@ module Picturizer
     end
 
     def end_time
-      0
+      @shapes.values.max_by{ | item |
+        item.end_time
+      }.end_time
     end
 
     def make_figure_method( name )
       define_singleton_method( name ) do | *args, &blk |
-        
+        shapes[ name ].new_transition
       end
     end
   end
