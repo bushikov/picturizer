@@ -4,7 +4,7 @@ module Picturizer
       def canvas
         return unless block_given?
 
-        yield canvas
+        yield canvas_body
       end
     end
   end

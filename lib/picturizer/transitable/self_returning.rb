@@ -1,5 +1,5 @@
 module Picturizer
-  module Transition
+  module Transitable
     module SelfReturning
       def method_added( method_name )
         super( method_name )

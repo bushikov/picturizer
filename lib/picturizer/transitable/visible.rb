@@ -13,9 +13,6 @@ module Picturizer
       alias_method :fading_out, :fade_out
 
       def fade_in
-        @shape.stroke_opacity = 0
-        @shape.fill_opacity = 0
-
         formula = ->( t ){ ( t - starting_time ).to_f / duration }
 
         @parameters[ :stroke_opacity ] = formula
@@ -38,9 +35,6 @@ module Picturizer
       alias_method :vanishing, :vanish
 
       def emerge
-        @shape.stroke_opacity = 0
-        @shape.fill_opacity = 0
-
         formula = ->( t ){ t >= starting_time ? 1.0 : nil }
 
         @parameters[ :stroke_opacity ] = formula

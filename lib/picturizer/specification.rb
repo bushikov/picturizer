@@ -4,21 +4,20 @@ module Picturizer
     include Specifications::Canvas
     include Specifications::Rectangle
 
-    attr_reader :specification, :shapes, :canvas, :config
+    attr_reader :specification, :shapes, :canvas_body, :config
 
     def initialize( spec )
       @specification = spec
-      @shapes = {}
-      @canvas = Shapes::Canvas.new
+      # @shapes = {}
+      @shapes = Picturizer::Shapes.new
+      @canvas_body = Shape::Canvas.new
       @config = Configuration.new
 
       instance_eval( spec )
     end
 
     def end_time
-      @shapes.values.max_by{ | item |
-        item.end_time
-      }.end_time
+      @shapes.end_time
     end
 
     def make_figure_method( name )

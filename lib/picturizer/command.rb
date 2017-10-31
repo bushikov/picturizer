@@ -5,7 +5,7 @@ module Picturizer
 
       container = Picturizer::Painter.draw( spec )
 
-      container.write( spec.config.directory + "/" + spec.config.file_name + "." + spec.config.format )
+      container.write( spec.config.directory + "/" + spec.config.file_name + "." + spec.config.format.to_s )
     end
   end
 end

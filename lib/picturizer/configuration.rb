@@ -9,9 +9,9 @@ module Picturizer
     def initialize
       @directory = "."
       @file_name = "out"
-      @format = "gif"
-      @interval = 1
-      @ticks_per_second = 1000
+      @format = :gif
+      @interval = 10
+      @ticks_per_second = 100
     end
   end
 end

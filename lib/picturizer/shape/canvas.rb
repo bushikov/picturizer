@@ -1,5 +1,5 @@
 module Picturizer
-  module Shapes
+  module Shape
     class Canvas
       attr_accessor :width,
                     :height,
@@ -11,7 +11,7 @@ module Picturizer
         @background_color = "white"
       end
 
-      def body
+      def frame
         Magick::Image.new( width, height ){
           self.background_color = background_color
         }

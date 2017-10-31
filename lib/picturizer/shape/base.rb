@@ -1,5 +1,5 @@
 module Picturizer
-  module Shapes
+  module Shape
     class Base
       extend Parameters
 
@@ -7,8 +7,8 @@ module Picturizer
                           :stroke_linecap,
                           :stroke_linejoin,
                           :stroke_width,
-                          :stroke_opacity,
                           :fill_color,
+                          :stroke_opacity,
                           :fill_opacity,
                           :x,
                           :y
@@ -56,10 +56,6 @@ module Picturizer
         transitions.end_time
       end
 
-      def magick_draw_object
-        Magick::Draw.new
-      end
-
       def current_transition
         transitions << Transition.new( self ) if transitions.empty?
         transitions.last
@@ -72,6 +68,24 @@ module Picturizer
 
       def status( time )
         @status[ time ] ||= transitions.status( time )
+      end
+
+      def initialize_copy( obj )
+        current_parameters = parameters( obj.end_time )
+
+        confirmation_classes = [ Fixnum, Bignum, Float,
+                                 TrueClass, FalseClass, NilClass ]
+
+        parameter_names.each do | p_name |
+          value = current_parameters.send( p_name )
+
+          unless confirmation_classes.include?( value.class )
+            send( "#{ p_name }=", value.dup )
+          end
+        end
+
+        @transitions = Picturizer::Transitions.new
+        @status = {}
       end
     end
   end
