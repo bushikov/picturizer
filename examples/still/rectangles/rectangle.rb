@@ -1,5 +1,5 @@
 configure do | c |
-  c.directory = "./examples/still"
+  c.directory = "./examples/still/rectangles"
   c.file_name = "rectangle"
   c.format = :png
 end

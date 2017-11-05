@@ -1,5 +1,5 @@
 configure do | c |
-  c.directory = "./examples/moving"
+  c.directory = "./examples/moving/rectangles"
   c.file_name = "copied_rectangle"
 end
 
