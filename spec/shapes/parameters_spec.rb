@@ -1,9 +1,9 @@
 require "spec_helper"
-require "picturizer/shapes/parameters"
+require "picturizer/shape/parameters"
 
-RSpec.describe Picturizer::Shapes::Parameters do
+RSpec.describe Picturizer::Shape::Parameters do
   class Klass
-    extend Picturizer::Shapes::Parameters
+    extend Picturizer::Shape::Parameters
     register_parameters :val1, :val2, :val3
     def initialize
     end
@@ -28,7 +28,7 @@ RSpec.describe Picturizer::Shapes::Parameters do
       obj = Klass.new
       obj.val1 = 1
       obj.val2 = 2
-      parameters = obj.parameters
+      parameters = obj.parameters( 0 )
       expect( parameters.val1 ).to eq 1
       expect( parameters.val2 ).to eq 2
       expect( parameters.val3 ).to eq nil
