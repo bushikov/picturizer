@@ -1,36 +1,80 @@
 # Picturizer
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/picturizer`. To experiment with that code, run `bin/console` for an interactive prompt.
+## Description
+This app enables you to generate image files easily with DSL via ImageMagick.
 
-TODO: Delete this and the text above, and describe your gem
+## Requirements
+ImageMagick has to be installed.
+
+```
+sudo apt-get install libmagickwand-dev
+```
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'picturizer'
+```
+git clone https://github.com/bushikov/picturizer.git
 ```
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install picturizer
-
 ## Usage
+```
+bundle exec exe/pic [FILE]
+```
 
-TODO: Write usage instructions here
+## DSL grammar
 
-## Development
+### Still image
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```ruby
+configure do | c |           # configuration about the file
+  c.directory = "."          # the place which the image will be stored
+  c.file_name = "rectangle"  # the image file name
+  c.format = :png            # image format
+end
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+canvas do | c |              # configuration about the resolution and so on
+  c.width = 700              # image's width
+  c.height = 700             # image's height
+end
 
-## Contributing
+rectangle do | r |           # make a rectangle
+  r.width = 400              # the rectangle's width
+  r.height = 400             # the rectangle's height
+  r.x = 100                  # the horizontal position of the upper left corner of the rectangle
+  r.y = 100                  # the vertical position of the upper left corner of the rectangle
+  r.fill_color = "red"       # the color which will fill the inner of rectangle
+  r.stroke_color = "black"   # the color which will outline the rectangle
+end
+```
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/picturizer.
+### Animated image
 
+```ruby
+configure do | c |
+  c.directory = "."
+  c.file_name = "anime"
+  c.format = :gif
+  c.interval = 100
+  c.ticks_per_second = 1000
+end
+
+canvas do | c |
+  c.width = 700
+  c.height = 700
+end
+
+rectangle( "rec1" ) do | r |
+  r.width = 100
+  r.height = 100
+  r.fill_color = "blue"
+  r.stroke_color = "black"
+end
+
+rec1.move( from: [ 0, 0 ], to: [ 400, 400 ] ).between( from: 0, to: 2000 )
+```
+### details
+coming soon
+
+## Examples
+
+The examples are [here](./examples/EXAMPLES.md)

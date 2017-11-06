@@ -1,5 +1,5 @@
 configure do | c |
-  c.directory = "./examples/moving/rectangles"
+  c.directory = "./examples/animated/rectangles"
   c.file_name = "rectangle_acting_two_things_simultaneously"
 end
 
