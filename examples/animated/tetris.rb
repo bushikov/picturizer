@@ -1,7 +1,7 @@
 configure do | c |
   c.directory = "./examples/animated"
   c.file_name = "tetris"
-  c.interval = 25
+  c.interval = 250
   # c.format = :png
 end
 

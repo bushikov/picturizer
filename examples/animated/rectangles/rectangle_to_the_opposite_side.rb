@@ -2,8 +2,7 @@ configure do | c |
   c.directory = "./examples/animated/rectangles"
   c.file_name = "rectangle_to_the_opposite_side"
   c.format = :gif
-  c.interval = 2
-  c.ticks_per_second = 100
+  c.interval = 20
 end
 
 rectangle( "rec" ) do | r |
