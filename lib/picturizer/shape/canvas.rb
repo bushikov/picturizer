@@ -3,18 +3,19 @@ module Picturizer
     class Canvas
       attr_accessor :width,
                     :height,
-                    :background_color
+                    :bg_color
 
       def initialize
         @width = 500
         @height = 500
-        @background_color = "white"
+        @bg_color = "white"
       end
 
       def frame
-        Magick::Image.new( width, height ){
-          self.background_color = background_color
-        }
+        grad = Magick::GradientFill.new( 0, 0,
+                                         width, height,
+                                         bg_color, bg_color )
+        Magick::Image.new( width, height, grad )
       end
     end
   end
