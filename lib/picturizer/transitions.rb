@@ -4,7 +4,11 @@ module Picturizer
   class Transitions
     extend Forwardable
 
-    def_delegators( :@transitions, :<<, :last, :empty?, :reduce )
+    def_delegators( :@transitions, :<<, 
+                                   :last,
+                                   :empty?,
+                                   :pop,
+                                   :reduce )
 
     def initialize
       @transitions = []
@@ -20,6 +24,15 @@ module Picturizer
         end
       end
     end
+
+    # def last_available_transition
+    #   @transitions.reverse.reduce( nil ) do | tmp, transition |
+    #     unless tmp
+    #       tmp = transition if transitions.available?
+    #     end
+    #     tmp
+    #   end
+    # end
 
     def status( time )
       @transitions.reduce( {} ) do | acc, transition |

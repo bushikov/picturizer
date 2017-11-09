@@ -3,7 +3,7 @@ module Picturizer
     include Transitable::Movable
     include Transitable::Visible
 
-    attr_reader :duration, :starting_time
+    attr_reader :duration, :starting_time, :shape
 
     def initialize( shape )
       @parameters = {}
@@ -18,6 +18,13 @@ module Picturizer
           acc
         end
       end
+    end
+
+    def available?
+      return false unless duration
+      return false unless starting_time
+      return false if @parameters == {}
+      true
     end
 
     def for( d )
@@ -39,6 +46,15 @@ module Picturizer
     def at( t )
       @starting_time = t
       @duration = Float::INFINITY
+      self
+    end
+
+    def simultaneously_with( target )
+      target.shape.delete_void_transition
+      target = target.shape.last_transition
+      @starting_time = target.starting_time
+      @duration = target.duration
+
       self
     end
 

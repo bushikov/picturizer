@@ -66,9 +66,22 @@ module Picturizer
         transitions.last
       end
 
+      def delete_void_transition
+        transitions.pop
+      end
+
+      def last_transition
+        raise( "There's no transition" ) if transitions.empty?
+        transitions.last
+      end
+
       def status( time )
         @status[ time ] ||= transitions.status( time )
       end
+
+      # def last_available_transition
+      #   transitions.last_available_transition
+      # end
 
       def initialize_copy( obj )
         current_parameters = parameters( obj.end_time )
