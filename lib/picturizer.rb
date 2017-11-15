@@ -10,9 +10,9 @@ require "picturizer/shape/base"
 require "picturizer/shape/canvas"
 require "picturizer/shape/rectangle"
 
-require "picturizer/specifications/configuration"
-require "picturizer/specifications/canvas"
-require "picturizer/specifications/rectangle"
+require "picturizer/specificationable/configuration"
+require "picturizer/specificationable/canvas"
+require "picturizer/specificationable/rectangle"
 
 require "picturizer/command"
 require "picturizer/configuration"

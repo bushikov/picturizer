@@ -1,5 +1,5 @@
 module Picturizer
-  module Specifications
+  module Specificationable
     module Canvas
       def canvas
         return unless block_given?

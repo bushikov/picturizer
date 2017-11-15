@@ -1,8 +1,8 @@
 module Picturizer
   class Specification
-    include Specifications::Configuration
-    include Specifications::Canvas
-    include Specifications::Rectangle
+    include Specificationable::Configuration
+    include Specificationable::Canvas
+    include Specificationable::Rectangle
 
     attr_reader :specification, :shapes, :canvas_body, :config
 

@@ -1,5 +1,5 @@
 module Picturizer
-  module Specifications
+  module Specificationable
     module Configuration
       def configure
         return unless block_given?
