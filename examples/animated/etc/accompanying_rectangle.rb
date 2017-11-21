@@ -1,7 +1,6 @@
 configure do | c |
   c.directory = "examples/animated/etc"
   c.file_name = "accompanying_rectangle"
-  c.format = :png
 end
 
 rectangle( :rec1 ) do | r |

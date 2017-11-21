@@ -3,15 +3,15 @@ module Picturizer
     class Base
       extend Parameters
 
-      register_parameters :stroke_color,
-                          :stroke_linecap,
-                          :stroke_linejoin,
-                          :stroke_width,
-                          :fill_color,
-                          :stroke_opacity,
-                          :fill_opacity,
-                          :x,
-                          :y
+      register_common_parameters :stroke_color,
+                                 :stroke_linecap,
+                                 :stroke_linejoin,
+                                 :stroke_width,
+                                 :fill_color,
+                                 :stroke_opacity,
+                                 :fill_opacity,
+                                 :x,
+                                 :y
 
       attr_accessor :transitions
 

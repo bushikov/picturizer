@@ -9,8 +9,8 @@ module Picturizer
       end
 
       def draw( canvas, time )
-        Picturizer::Components::Rectangle.draw( canvas,
-                                                parameters( time ) )
+        Picturizer::Component::Rectangle.draw( canvas,
+                                               parameters( time ) )
       end
     end
   end

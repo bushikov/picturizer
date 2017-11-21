@@ -1,5 +1,5 @@
 module Picturizer
-  module Components
+  module Component
     module Rectangle
       class << self
         def draw( canvas, parameters )
