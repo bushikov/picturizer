@@ -4,10 +4,19 @@ configure do | c |
   c.format = :png
 end
 
+rectangle do | r |
+  # r.fill_opacity = 0
+  r.x = 100
+  r.y = 100
+  r.width = 100
+  r.height = 100
+end
+
 text do | t |
   t.text = "HELLO WORLD"
-  t.x = 200
-  t.y = 200
+  t.x = 100
+  t.y = 100
   t.width = 100
   t.height = 100
 end
+

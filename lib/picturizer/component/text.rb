@@ -3,25 +3,33 @@ module Picturizer
     module Text
       class << self
         def draw( canvas, parameters )
-          draw_object( parameters ).annotate(
-            canvas,
-            parameters.width,
-            parameters.height,
-            parameters.x,
-            parameters.y,
-            parameters.text ) do
-              self.gravity = parameters.gravity
-              self.pointsize = parameters.font_size
-              self.fill = parameters.color
-            end
+            draw_object( parameters ).text(
+              offset_x( parameters ),
+              offset_y( parameters ),
+              parameters.text ).draw( canvas )
         end
 
         def draw_object( parameters )
-          magick_draw_object
+          obj = magick_draw_object
+
+          obj.gravity( parameters.gravity )
+          obj.pointsize = parameters.font_size
+          obj.fill( parameters.color )
+          obj.fill_opacity( parameters.fill_opacity )
         end
 
         def magick_draw_object
           Magick::Draw.new
+        end
+
+        def offset_x( parameters )
+          ( parameters.x + parameters.width / 2 ) \
+            - ( parameters.canvas_width / 2 )
+        end
+
+        def offset_y( parameters )
+          ( parameters.y + parameters.height / 2 ) \
+            - ( parameters.canvas_height / 2 )
         end
       end
     end
